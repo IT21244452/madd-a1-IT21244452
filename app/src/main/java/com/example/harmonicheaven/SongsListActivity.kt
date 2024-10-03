@@ -5,9 +5,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.example.harmonicheaven.adapter.SongsListAdapter
 import com.example.harmonicheaven.databinding.ActivitySongsListBinding
 import com.example.harmonicheaven.models.categoryModel
 
@@ -18,6 +20,7 @@ class SongsListActivity : AppCompatActivity() {
     }
 
     lateinit var binding: ActivitySongsListBinding
+    lateinit var songsListAdapter: SongsListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,5 +35,14 @@ class SongsListActivity : AppCompatActivity() {
             )
             .into(binding.coverImageView)
 
+        setupSongsListRecyclerView()
+
     }
+
+    fun setupSongsListRecyclerView(){
+        songsListAdapter = SongsListAdapter(category.songs)
+        binding.songsListRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.songsListRecyclerView.adapter = songsListAdapter
+    }
+
 }
