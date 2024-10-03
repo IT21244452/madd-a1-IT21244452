@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.example.harmonicheaven.MyExoplayer
 import com.example.harmonicheaven.SongsListActivity.Companion.category
 import com.example.harmonicheaven.databinding.SongListItemRecyclerRowBinding
 import com.example.harmonicheaven.models.SongModel
@@ -30,6 +31,9 @@ class SongsListAdapter (private val songIdList : List<String>):
                                 RequestOptions().transform(RoundedCorners(32))
                             )
                             .into(binding.songCoverImageView)
+                        binding.root.setOnClickListener{
+                            MyExoplayer.startPlaying(binding.root.context,song)
+                        }
                     }
                 }
 
