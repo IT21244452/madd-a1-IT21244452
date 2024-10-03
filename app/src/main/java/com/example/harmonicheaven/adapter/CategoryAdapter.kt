@@ -1,9 +1,13 @@
 package com.example.harmonicheaven.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.RoundedCorner
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.harmonicheaven.databinding.CategoryItemRecyclerRowBinding
 import com.example.harmonicheaven.models.categoryModel
 
@@ -15,7 +19,12 @@ class CategoryAdapter (private val categoryList: List<categoryModel>) :
             //binding the data with views
             fun bindData(category : categoryModel){
                 binding.nameTextView.text = category.name
-                Glide.with(binding.coverImageView).load(category.coverUrl).into(binding.coverImageView)
+                Glide.with(binding.coverImageView).load(category.coverUrl)
+                    .apply(
+                        RequestOptions().transform(RoundedCorners(32))
+                    )
+                    .into(binding.coverImageView)
+//                Log.i("SONGS", category.songs.size.toString())
 
             }
         }
